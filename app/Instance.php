@@ -12,7 +12,7 @@ class Instance extends Model
 	 * @var array
 	 *
 	 */
-	protected $fillable = ['symbol_id','source_type','source_name','action'];
+	protected $fillable = ['symbol_id','source_type','source_name','action','sentiment','note'];
 
 
 	/**

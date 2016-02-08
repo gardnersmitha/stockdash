@@ -5,6 +5,7 @@ namespace App\Http\ViewComposers;
 use Illuminate\View\View;
 use Illuminate\Users\Repository as UserRepository;
 use App\Instance;
+use App\Symbol;
 
 class DashboardComposer
 {
@@ -13,7 +14,7 @@ class DashboardComposer
      *
      * @var UserRepository
      */
-    protected $instances;
+    protected $instances,$first;
 
     /**
      * Create a new profile composer.
@@ -21,10 +22,11 @@ class DashboardComposer
      * @param  UserRepository  $users
      * @return void
      */
-    public function __construct(Instance $instance)
+    public function __construct(Instance $instance,Symbol $symbol)
     {
         // Dependencies automatically resolved by service container...
-        $this->instances = $instance->all();
+        $this->instances = $instance->whereNull('action')->with('symbol')->orderBy('created_at', 'desc')->get();
+
     }
 
     /**
@@ -35,6 +37,6 @@ class DashboardComposer
      */
     public function compose(View $view)
     {
-        $view->with('instances', $this->instances);
+        $view->with(['instances' => $this->instances]);
     }
 }

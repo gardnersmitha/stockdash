@@ -29,6 +29,6 @@ class Kernel extends ConsoleKernel
         $schedule->call(function(ScreenRunnerContract $screen_runner){
             $screen_runner->runScreens();
             Log::info('ScreenRunner executed');
-        })->daily()->weekdays()->at('18:02');
+        })->daily()->weekdays()->at('21:30'); //4:30PM EST
     }
 }

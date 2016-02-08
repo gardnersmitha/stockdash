@@ -109,7 +109,7 @@ class InstanceController extends Controller
      */
     public function show($id)
     {
-        //
+       dd($this->instance->find($id));
     }
 
     /**
@@ -132,7 +132,20 @@ class InstanceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // TODO - move validation rules into a model property and make sure we validate here
+
+        // validate the symbol
+        // $this->validate($request, [
+        //     'symbol' => 'required|max:8'
+        // ]);
+
+        $instance = $this->instance->find($id);
+
+        $instance->fill($request->all());
+
+        $instance->save();
+
+        //return redirect('/instance');
     }
 
     /**

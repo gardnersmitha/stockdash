@@ -69,12 +69,25 @@ class SymbolController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $symbol
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($symbol, Request $request)
     {
-        //
+
+
+        $this->symbol = $this->symbol->with('instances')->where('symbol','=',$symbol)->first();
+        
+        //dd($request->partial);
+
+        if( $request->partial == 1 ) {
+
+             $html = view('partial.symbol', ['symbol' => $this->symbol])->render();
+             return $html;
+        }
+        else {
+            return view('symbol.show', ['symbol' => $this->symbol]);
+        }
     }
 
     /**

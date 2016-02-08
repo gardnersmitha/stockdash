@@ -1,5 +1,3 @@
-
-
 @extends('app')
 
 @section('content')
@@ -7,12 +5,20 @@
     <main id="dash-container" class="row">
         {{-- Display Validation Errors --}}
 
-        <div id="instance-panel" class="col-xs-3">
-        	<ul class="list-group">
+        <div id="instance-panel" class="col-xs-3 container">
+        	<ul class="list-group row">
 
         	@foreach ($instances as $instance)
 
-			    <li class="list-group-item">{{ $instance->symbol->symbol }}</li>
+			    <li class="instance-panel-item list-group-item" data-symbol="{{ $instance->symbol->symbol }}">
+			    	
+			    	{{ $instance->symbol->symbol }}
+
+			    	<span class="label label-default label-pill pull-xs-right">
+			    		{{ $instance->source_type }}
+			    	</span>
+
+			    </li>
 
 			@endforeach
 
@@ -21,7 +27,11 @@
         </div>
 
         <div id="symbol-panel" class="col-xs-9">
-        	Symbol Details
+
+        	<?php  $symbol = $instances->first()->symbol; ?>
+        	
+        	@include('partial.symbol')
+
         </div>
         
 

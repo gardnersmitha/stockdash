@@ -4612,4 +4612,7 @@ html, body {
   height: 100%;
   overflow: scroll; }
 
+#chart-container {
+  height: 20%; }
+
 /*# sourceMappingURL=app.css.map */
