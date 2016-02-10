@@ -1,39 +1,33 @@
 <div id="chart-container" class="row">
-	chart for {{ $symbol->symbol }}
+	<!-- chart for {{ $symbol->symbol }} -->
 	<!-- TradingView Widget BEGIN -->
-
-	<!-- 
-
-	<script type="text/javascript" src="https://d33t3vvu2t2yu5.cloudfront.net/tv.js"></script>
-	<script type="text/javascript">
-	new TradingView.widget({
-	  "autosize": true,
-	  "symbol": "{{ $symbol->symbol }}",
-	  "interval": "D",
-	  "timezone": "Etc/UTC",
-	  "theme": "White",
-	  "style": "1",
-	  "locale": "en",
-	  "toolbar_bg": "#f1f3f6",
-	  "hide_side_toolbar": false,
-	  "allow_symbol_change": true,
-	  "details": true,
-	  "calendar": true,
-	  "hideideas": true,
-	  "news": [
-	  	"headlines"
-	  ],
-	  "studies": [
-	    "MASimple@tv-basicstudies"
-	  ],
-	  "show_popup_button": true,
-	  "popup_width": "1000",
-	  "popup_height": "650"
-	});
-	</script>
-
-	-->
-
+		<script>
+			new TradingView.widget({
+				  "container_id":"chart-container",
+				  "autosize": true,
+				  "symbol": "{{ $symbol->symbol }}",
+				  "interval": "D",
+				  "timezone": "Etc/UTC",
+				  "theme": "White",
+				  "style": "1",
+				  "locale": "en",
+				  "toolbar_bg": "#f1f3f6",
+				  "hide_side_toolbar": false,
+				  "allow_symbol_change": true,
+				  "details": true, 
+				  "calendar": true,
+				  "hideideas": true,
+				  "news": [
+				  	"headlines"
+				  ],
+				  "studies": [
+				    "MASimple@tv-basicstudies"
+				  ],
+				  "show_popup_button": true,
+				  "popup_width": "1000",
+				  "popup_height": "650"
+			});
+		</script>
 	<!-- TradingView Widget END -->
 </div>
 
@@ -130,7 +124,7 @@
    			<!-- Instance Meta -->
    			<div class="col-xs-2">
    				{{ date_format($instance->created_at, 'M j, y') }}
-				<p class="small m-y-0">{{ $instance->id }}</p>
+				<p class="small m-y-0">{{ $instance->symbol->symbol }} | ID: {{ $instance->id }}</p>
    			</div>
 
    			<!-- Instance Action Details  -->

@@ -6,6 +6,7 @@
 
         <link rel="stylesheet" href="{{ URL::asset('css/app.css') }}">
         <script src="{{ URL::asset('js/jquery.min.js') }}" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript" src="https://d33t3vvu2t2yu5.cloudfront.net/tv.js"></script>
 
     </head>
 
