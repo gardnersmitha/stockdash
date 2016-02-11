@@ -7,6 +7,10 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Symbol;
 use App\Instance;
+use App\Reminder;
+use Log;
+use DateTime;
+use DateInterval;
 
 class InstanceController extends Controller
 {
@@ -21,6 +25,7 @@ class InstanceController extends Controller
     {
         $this->symbol = new Symbol;
         $this->instance = new Instance;
+        $this->reminder = new Reminder;
     }
 
 
@@ -75,33 +80,6 @@ class InstanceController extends Controller
     }
 
     /**
-     * Store a screener item as a new Instance in storage.
-     *
-     */
-    public function storeScreenerItem($item)
-    {
-        //validate the symbol
-        $this->validate($item, [
-            'symbol' => 'required|max:8'
-        ]);
-
-
-        $symbol = $this->symbol->firstOrCreate([
-            'symbol' => $item->symbol
-        ]);
-
-        $instance = $this->instance;
-
-        $instance->source_type = $item->source_type;
-        $instance->source_name = $item->source;
-
-        $symbol->instances()->save($instance);
-
-        return('success');
-
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -137,13 +115,18 @@ class InstanceController extends Controller
         // validate the symbol
         // $this->validate($request, [
         //     'symbol' => 'required|max:8'
-        // ]);
+        // ]); 
 
         $instance = $this->instance->find($id);
 
         $instance->fill($request->all());
 
-        $instance->save();
+        if($instance->save()){
+            
+            return $this->parseInstanceAction($instance);
+        }
+
+        //$this->parseInstanceAction($instance);
 
         //return redirect('/instance');
     }
@@ -157,5 +140,46 @@ class InstanceController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Take the instance action and do the right thing.
+     *
+     * @param \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function parseInstanceAction(Instance $instance)
+    {
+        
+        //See if the action is a reminder
+        if (str_contains($instance->action, 'remind')) {
+
+            //Explode the string to see what the interval should be (1D, 7D, 30D are options)
+            $reminder_interval = explode('_', $instance->action);
+
+            //Get today's date as a DateTime object
+            $today = new DateTime(date('Y-m-d'));
+
+            //Turn the interval into a DateInterval object
+            $interval = new DateInterval('P'.$reminder_interval[1]);
+
+            //Update our reminder obejct with the new date
+            $this->reminder->remind_on = $today->add($interval)->format('Y-m-d H:i:s');
+
+            //Manually set our instance id
+            //TODO - figure out if there is some way to do this relationally
+            $this->reminder->instance_id = $instance->id;
+
+            //Store the reminder.
+            $instance->symbol->reminders()->save($this->reminder);
+            
+
+            return $this->reminder;
+
+
+        }
+
+        //return response()->json($instance);
+
     }
 }

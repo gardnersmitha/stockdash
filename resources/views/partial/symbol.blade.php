@@ -76,9 +76,9 @@
 				<label class="sr-only" for="action">Action</label>
 
 				<select class="form-control form-control-sm c-select" name="action">
-				  <option value="remind_1d" selected>Remind(1d)</option>
-				  <option value="remind_1w">Remind(1w)</option>
-				  <option value="remind_1m">Remind(1m)</option>
+				  <option value="remind_1D" selected>Remind(1d)</option>
+				  <option value="remind_7D">Remind(1w)</option>
+				  <option value="remind_30D">Remind(1m)</option>
 				  <option value="dismiss">Dismiss</option>
 				</select>
 			</div>

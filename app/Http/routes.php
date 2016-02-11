@@ -29,6 +29,7 @@ Route::get('/runscreens', function (ScreenRunnerContract $screenrunner) {
 
 Route::resource('instance','InstanceController');
 Route::resource('symbol','SymbolController');
+Route::resource('reminder','ReminderController');
 
 
 /*

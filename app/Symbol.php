@@ -24,4 +24,9 @@ class Symbol extends Model
 	{
 		return $this->hasMany(Instance::class);
 	}
+
+	public function reminders()
+	{
+		return $this->hasMany(Reminder::class);
+	}
 }

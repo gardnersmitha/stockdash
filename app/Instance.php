@@ -24,4 +24,17 @@ class Instance extends Model
 	{
 		return $this->belongsTo(Symbol::class);
 	}
+	
+	/**
+	 *  
+	 * Get all instances of a symbol
+	 *
+	 */
+	public function reminder()
+	{
+		return $this->hasOne(Reminder::class);
+	}
 }
+
+
+
