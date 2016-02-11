@@ -10,7 +10,7 @@ I built it because I was tired of managing multiple different sources of informa
 You'll need a server/VM setup that supports Laravel and Node.js - an overview of required software is [here](https://laravel.com/docs/5.2/installation#server-requirements). We use the excellent [Homestead](https://laravel.com/docs/5.2/homestead) environment setup that's custom tailored to run Laravel really nicely out of the box. You can definitely do the same thing - just follow the instructions [here](https://laravel.com/docs/5.2/homestead).
 
 
-### 1. Download & Install 
+#### 1. Download & Install 
 
 After your VM is setup, clone the repository into your desired directory on your local machine:
 
@@ -44,7 +44,7 @@ If you have any issues, a more comprehensive Laravel installation guide can be f
 <br/>
 <br/>
 
-##### 2. Configure
+#### 2. Configure
 
 There are a couple of configuration tasks that need to be completed in order for the app to run. 
 
