@@ -157,6 +157,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\ScreenRunnerServiceProvider::class,
         App\Providers\ViewComposerServiceProvider::class,
+        App\Providers\ReminderRunnerServiceProvider::class,
 
     ],
 

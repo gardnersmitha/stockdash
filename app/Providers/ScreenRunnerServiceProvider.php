@@ -18,6 +18,7 @@ class ScreenRunnerServiceProvider extends ServiceProvider
     {
         //
     }
+    
     /**
      * Register the application services.
      *

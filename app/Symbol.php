@@ -12,7 +12,15 @@ class Symbol extends Model
 	 * @var array
 	 *
 	 */
-	protected $fillable = ['symbol','symbol_id'];
+	protected $fillable = ['symbol','symbol_id','is_muted'];
+
+	/**
+	 * A flag for whether or not the symbol is currently muted
+	 * 
+	 * @var boolean
+	 *
+	 */
+	protected $isMuted = false;
 
 
 	/**
@@ -25,8 +33,14 @@ class Symbol extends Model
 		return $this->hasMany(Instance::class);
 	}
 
+	/**
+	 *  
+	 * Get all reminders for a symbol
+	 *
+	 */
 	public function reminders()
 	{
 		return $this->hasMany(Reminder::class);
 	}
+
 }

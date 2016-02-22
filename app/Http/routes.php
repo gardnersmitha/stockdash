@@ -12,6 +12,7 @@
 */
 
 use App\Helpers\Contracts\ScreenRunnerContract;
+use App\Helpers\Contracts\ReminderRunnerContract;
 
 Route::get('/', function () {
 
@@ -24,6 +25,14 @@ Route::get('/runscreens', function (ScreenRunnerContract $screenrunner) {
 	$screens = $screenrunner->runScreens();
 
     return view('app', ['screens']);
+
+});
+
+Route::get('/runreminders', function (ReminderRunnerContract $reminderrunner) {
+
+	$reminders = $reminderrunner->runAllReminders();
+
+    dd($reminders);
 
 });
 

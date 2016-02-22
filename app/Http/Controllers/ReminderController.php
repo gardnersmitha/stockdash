@@ -64,7 +64,7 @@ class ReminderController extends Controller
 
         $symbol->reminders()->save($reminder);
 
-        return redirect('/reminder');
+        //return redirect('/reminder');
 
     }
 

@@ -123,4 +123,19 @@ class SymbolController extends Controller
     {
         //
     }
+
+    /**
+     *  
+     * Get all reminders for a symbol
+     *
+     */
+    public function setIsMuted(){
+
+        return 'hey';
+        //get all reminders
+        //$last_reminder = $this->symbol->reminders->pop();
+
+        //dd($last_reminder);
+
+    }
 }

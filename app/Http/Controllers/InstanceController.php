@@ -87,7 +87,7 @@ class InstanceController extends Controller
      */
     public function show($id)
     {
-       dd($this->instance->find($id));
+       return $this->instance->find($id);
     }
 
     /**
@@ -121,14 +121,12 @@ class InstanceController extends Controller
 
         $instance->fill($request->all());
 
-        if($instance->save()){
-            
-            return $this->parseInstanceAction($instance);
+        if($this->parseInstanceAction($instance)){
+            $instance->save();
         }
 
-        //$this->parseInstanceAction($instance);
+        return redirect('/');
 
-        //return redirect('/instance');
     }
 
     /**
@@ -171,15 +169,8 @@ class InstanceController extends Controller
             $this->reminder->instance_id = $instance->id;
 
             //Store the reminder.
-            $instance->symbol->reminders()->save($this->reminder);
-            
-
-            return $this->reminder;
-
-
+            return $instance->symbol->reminders()->save($this->reminder);
         }
-
-        //return response()->json($instance);
 
     }
 }
