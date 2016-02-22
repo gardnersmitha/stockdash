@@ -64,9 +64,9 @@
 				<label class="sr-only" for="sentiment">Sentiment</label>
 
 				<select class="form-control form-control-sm c-select" name="sentiment">
-				  <option value="bullish" selected>Bullish</option>
+				  <option value="bullish">Bullish</option>
+				  <option value="neutral" selected>Neutral</option>
 				  <option value="bearish">Bearish</option>
-				  <option value="neutral">Neutral</option>
 				</select>
 
 			</div>

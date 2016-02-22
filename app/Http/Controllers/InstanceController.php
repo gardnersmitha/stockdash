@@ -122,7 +122,9 @@ class InstanceController extends Controller
         $instance->fill($request->all());
 
         if($this->parseInstanceAction($instance)){
+            
             $instance->save();
+            Log::info('instance updated');
         }
 
         return redirect('/');
@@ -150,7 +152,7 @@ class InstanceController extends Controller
     {
         
         //See if the action is a reminder
-        if (str_contains($instance->action, 'remind')) {
+        if ( str_contains( $instance->action, 'remind' ) ) {
 
             //Explode the string to see what the interval should be (1D, 7D, 30D are options)
             $reminder_interval = explode('_', $instance->action);
@@ -170,6 +172,12 @@ class InstanceController extends Controller
 
             //Store the reminder.
             return $instance->symbol->reminders()->save($this->reminder);
+        }
+
+        //handle dismiss, obvs
+        elseif ( str_contains( $instance->action, 'dismiss' ) ) {
+           
+            return $instance;
         }
 
     }

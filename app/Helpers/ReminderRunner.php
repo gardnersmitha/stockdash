@@ -18,7 +18,8 @@ class ReminderRunner implements ReminderRunnerContract
 	 */
 	public function __construct(){
        
-        $this->reminder = new Reminder;	
+        $this->reminder = new Reminder;
+        
 	}
 
 	/**

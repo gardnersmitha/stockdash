@@ -18,8 +18,12 @@ class ScreenRunner implements ScreenRunnerContract
 	{
 
 		$curl = new Curl;
-		$screen_url = "https://ags-kimono.firebaseio.com//kimono/api/8274ypaa/latest.json?auth=VKh5rXMRpnmqDwea6eKvsLUZKGEuJ9CxFIUHdZdQ";
 
+		//Firebase
+		//$screen_url = "https://ags-kimono.firebaseio.com//kimono/api/8274ypaa/latest.json?auth=VKh5rXMRpnmqDwea6eKvsLUZKGEuJ9CxFIUHdZdQ";
+		
+		//Kimonolabs.com
+		$screen_url = "https://www.kimonolabs.com/api/8274ypaa?apikey=2ondRRZjyBiPoBdmrDQCqMAUSLOfR8Pn";
 		$curl->get($screen_url);
 
 
