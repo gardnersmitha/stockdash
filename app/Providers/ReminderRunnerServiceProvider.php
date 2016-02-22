@@ -22,7 +22,7 @@ class ReminderRunnerServiceProvider extends ServiceProvider
     {
         Log::info('boot()');
         //Event hook to run reminders when we update an instance
-        Instance::updated( function($instance) {
+        Instance::updating( function($instance) {
 
             Log::info('event capture');
             $reminderRunner = new ReminderRunner;
