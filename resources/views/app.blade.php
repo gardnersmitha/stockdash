@@ -13,11 +13,10 @@
     <body>
         <div id="app" class="container-fluid">
             <div class="row">
-                <nav class="navbar navbar-light bg-faded">
+                <nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
                     <a class="navbar-brand" href="#">Stockdash</a>
 
-                    @include('instance.create')
-                    @yield('instance-form')
+                    @include('instance.quickcreate')
 
                 </nav>
             </div>

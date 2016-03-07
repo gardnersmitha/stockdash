@@ -5,7 +5,7 @@
     <main id="dash-container" class="row">
         {{-- Display Validation Errors --}}
 
-        <div id="instance-panel" class="col-xs-3 container">
+        <div id="instance-panel" class="col-xs-2 container">
         	<ul class="list-group row">
 
         	@foreach ($instances as $instance)
@@ -26,7 +26,7 @@
 
         </div>
 
-        <div id="symbol-panel" class="col-xs-9">
+        <div id="symbol-panel" class="col-xs-10">
 
         	<?php  $symbol = $instances->first()->symbol; ?>
         	

@@ -1,0 +1,22 @@
+html,body{
+	height:100%;
+}
+
+#app{
+	height:100%;
+}
+
+#dash-container{
+	height:100%;
+	overflow: auto;
+	padding-top:50px;
+}
+
+#instance-panel,#symbol-panel{
+	height:100%;
+	overflow: scroll;
+}
+
+#chart-container{
+	height:70%;
+}

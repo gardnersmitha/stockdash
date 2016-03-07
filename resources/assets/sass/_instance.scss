@@ -1,0 +1,40 @@
+/*
+
+
+Instance Detail Row
+
+*/
+
+.instance-detail{
+	overflow: auto;
+	font-size: $font-size-sm;
+	color: $gray-dark;
+	border-left:4px solid #fff;
+}
+
+	.instance-detail.bullish{
+		border-left:4px solid $brand-success;
+	}
+
+	.instance-detail.neutral{
+		border-left:4px solid $brand-warning;
+	}
+
+	.instance-detail.bearish{
+		border-left:4px solid $brand-danger;
+	}
+
+
+/*
+
+
+Instance Update Form Row
+
+*/
+.instance-update{
+	overflow: auto;
+	border-left:4px solid $gray-light;
+	background: $gray-lightest;
+	font-size: $font-size-sm;
+	color: $gray-dark;
+}

@@ -1,23 +1,9 @@
+//Boostrap
 @import "node_modules/bootstrap/scss/bootstrap";
+@import "node_modules/font-awesome/scss/font-awesome";
 
-html,body{
-	height:100%;
-}
-
-#app{
-	height:100%;
-}
-
-#dash-container{
-	height:100%;
-	overflow: auto;
-}
-
-#instance-panel,#symbol-panel{
-	height:100%;
-	overflow: scroll;
-}
-
-#chart-container{
-	height:50%;
-}
+//Our components
+@import "custom-variables";
+@import "layout";
+@import "instance";
+@import "nav";
