@@ -1,5 +1,5 @@
 <!-- Live Instance Item/Form -->
-<form class="row p-t-1 instance-update" action="/instance/{{ $instance->id }}" method="POST" style="overflow:auto;">
+<form class="row p-t-1 instance-update" action="/instance/{{ $instance->id }}" method="POST">
 
 	{{ method_field('PUT') }}
 
