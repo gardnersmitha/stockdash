@@ -26,9 +26,16 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        //Start the screeners running
         $schedule->call(function(ScreenRunnerContract $screen_runner){
-            $screen_runner->runScreens();
-            Log::info('ScreenRunner executed');
+            $screen_runner->startScreens();
+            Log::info('Screen run initiated by schedule.');
         })->daily()->weekdays()->at('21:30'); //4:30PM EST
+
+        //Fetch the screen results
+        $schedule->call(function(ScreenRunnerContract $screen_runner){
+            $screen_runner->fetchScreenResults();
+            Log::info('Screen results fetch initiated by schedule.');
+        })->daily()->weekdays()->at('21:45'); //4:45PM EST
     }
 }

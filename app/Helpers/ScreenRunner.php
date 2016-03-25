@@ -8,57 +8,94 @@ use Curl\Curl as Curl;
 use App\Instance as Instance;
 use App\Symbol as Symbol;
 
+//TODO - make camel case variable names snake case for consistency.
+
 class ScreenRunner implements ScreenRunnerContract
 {
 
 	protected $defer = true;
 
+	protected $startScreensUrl = "https://api.apifier.com/v1/iZfmBeHRjjoy3yeuS/crawlers/Finviz/execute?token=4EY4R3e5djBWBiapzf3zxJSYc";
 
-	public function runScreens()
+	protected $fetchScreenResultsUrl = 'https://api.apifier.com/v1/iZfmBeHRjjoy3yeuS/crawlers/Finviz?token=reZcs5KaFJSbTdBnPsP7y56DB';
+
+
+	public function startScreens()
+	{
+		$curl = new Curl;
+
+		$curl->get($this->startScreensUrl);
+
+		if ($curl->error) {
+
+		    Log::info('Screener run initation failed: '.$curl->error_code);
+		    return;
+		}
+		else {
+
+			Log::info('Screener run successfully intiated');
+		    return;
+		}
+	}
+
+	public function fetchScreenResults()
 	{
 
 		$curl = new Curl;
 
-		//Firebase
-		$screen_url = "https://ags-kimono.firebaseio.com//kimono/api/35bdu1uw/latest.json?auth=VKh5rXMRpnmqDwea6eKvsLUZKGEuJ9CxFIUHdZdQ";
-		
-		//Kimonolabs.com
-		// $screen_url = "https://www.kimonolabs.com/api/8274ypaa?apikey=2ondRRZjyBiPoBdmrDQCqMAUSLOfR8Pn";
-
-
-		$curl->get($screen_url);
-
+		//Get our metadata
+		$curl->get($this->fetchScreenResultsUrl);
 
 		if ($curl->error) {
 
-		    Log::info('Screener fetch failed: '.$screen_url.$curl->error_code);
-		    return $curl->error_code;
+		    Log::info('Screener fetch failed: '.$curl->error_code);
+		    return;
 		}
 		else {
 
-			Log::info('Screener processed: '.$screen_url);
-		    return $this->processScreens($curl->response);
+			Log::info('Screener processed');
+
+			$screenMetaData = json_decode($curl->response);
+
+			$lastRunResultsUrl = $screenMetaData->lastExecution->resultsUrl;
+
+			$resultsCurl = new Curl;
+
+			$resultsCurl->get($lastRunResultsUrl);
+
+			$this->processScreenResults($resultsCurl->response);
+
+			Log::info('Most recent results URL: '.$lastRunResultsUrl);
+
+		    return;
 		}
-
-
 	}
 
-	public function processScreens($screen_response)
+	public function processScreenResults($screen_response)
 	{
-
+		//dd(json_decode($screen_response));
 		$screen_response = json_decode($screen_response);
+		$screen_symbols = array();
 
-		$screen_tickers = collect($screen_response->results->symbols);
+		foreach ($screen_response as $page) {
 
-		$screen_instances = $screen_tickers->map(function($screener_symbol){
+			$page_symbols = $page->pageFunctionResult;
+
+			array_push($screen_symbols, $page_symbols);
+
+		}
+
+		$screen_symbols  = collect(array_collapse($screen_symbols));
+
+		$screen_instances = $screen_symbols->map(function($screen_symbol){
 			
 			$instance = new Instance;
 			$symbol = new Symbol;
 
 			//Transform to an instance
-			$symbol = $symbol->firstOrCreate(['symbol' => $screener_symbol->symbol->text]);
+			$symbol = $symbol->firstOrCreate(['symbol' => $screen_symbol->symbol]);
 			$instance->source_type = 'screener';
-			$instance->source_name = 'Finviz New Highs on 2x Volume';
+			$instance->source_name = $screen_symbol->source_name;
 
 			//Save new instances
 			$symbol->instances()->save($instance);

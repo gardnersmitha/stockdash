@@ -7,8 +7,10 @@ Interface ScreenRunnerContract
 
 {
 
-	public function runScreens();
+	public function startScreens();
 
-	public function processScreens($screenResponse);
+	public function fetchScreenResults();
+
+	public function processScreenResults($screenResponse);
 	
 }

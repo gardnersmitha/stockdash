@@ -22,7 +22,7 @@ Route::get('/', function () {
 
 Route::get('/runscreens', function (ScreenRunnerContract $screenrunner) {
 
-	$screens = $screenrunner->runScreens();
+	$screens = $screenrunner->fetchScreenResults();
 
     return view('app', ['screens']);
 
