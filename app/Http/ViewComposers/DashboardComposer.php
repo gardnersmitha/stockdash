@@ -26,6 +26,7 @@ class DashboardComposer
     {
         // Dependencies automatically resolved by service container...
         $this->instances = $instance->whereNull('action')->with('symbol')->orderBy('created_at', 'desc')->get();
+        $this->instances = $this->instances->groupBy('source_name');
 
     }
 
@@ -37,6 +38,7 @@ class DashboardComposer
      */
     public function compose(View $view)
     {
+        //dd($this->instances);
         $view->with(['instances' => $this->instances]);
     }
 }

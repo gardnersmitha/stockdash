@@ -6726,4 +6726,15 @@ Instance Update Form Row
   font-size: 0.875rem;
   color: #373a3c; }
 
+#instance-panel .list-group-heading {
+  color: #f7f7f9;
+  background: #55595c; }
+
+#instance-panel .list-group-heading:hover {
+  cursor: pointer; }
+
+#instance-panel .list-group-item:first-child {
+  border-top-right-radius: 0;
+  border-top-left-radius: 0; }
+
 /*# sourceMappingURL=app.css.map */

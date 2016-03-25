@@ -6,9 +6,14 @@
         {{-- Display Validation Errors --}}
 
         <div id="instance-panel" class="col-xs-2 container">
-        	<ul class="list-group row">
 
-        	@foreach ($instances as $instance)
+        	@foreach ($instances as $instance_group_name => $instance_group_instances)
+
+            <div class="list-group-heading list-group-item row" data-toggle="collapse" data-target="#{{ str_slug($instance_group_name,"-") }}-instances">{{ $instance_group_name }}</div>
+
+            <ul id="{{ str_slug($instance_group_name,"-") }}-instances" class="list-group row collapse in">
+
+                @foreach ($instance_group_instances as $instance)
 
 			    <li class="instance-panel-item list-group-item" data-symbol="{{ $instance->symbol->symbol }}">
 			    	
@@ -20,15 +25,17 @@
 
 			    </li>
 
-			@endforeach
+                @endforeach
 
-			</ul>
+            </ul>
+
+			@endforeach
 
         </div>
 
         <div id="symbol-panel" class="col-xs-10">
 
-        	<?php  $symbol = $instances->first()->symbol; ?>
+        	<?php  $symbol = $instances->first()->first()->symbol; ?>
         	
         	@include('partial.symbol')
 
@@ -39,5 +46,4 @@
 
     </main>
 
-    {{-- TODO: Current Tasks --}}
 @endsection

@@ -1,0 +1,20 @@
+//Top Nav
+
+//Side Instance Nav
+#instance-panel{
+
+	.list-group-heading{
+		color: $gray-lightest;
+		background: $gray;
+	}
+
+	.list-group-heading:hover{
+		cursor:pointer;
+	}
+
+	.list-group-item:first-child {
+	    border-top-right-radius: 0;
+	    border-top-left-radius: 0;
+	}
+
+}
