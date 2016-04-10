@@ -1,7 +1,7 @@
 <div id="chart-container" class="row">
 	<!-- chart for {{ $symbol->symbol }} -->
 	<!-- TradingView Widget BEGIN -->
-		<script>
+<!-- 		<script>
 			new TradingView.widget({
 				  "container_id":"chart-container",
 				  "autosize": true,
@@ -27,8 +27,10 @@
 				  "popup_width": "1000",
 				  "popup_height": "650"
 			});
-		</script>
+		</script> -->
 	<!-- TradingView Widget END -->
+
+	<iframe id="tv-iframe" src="https://tradingview.com/chart?symbol={{ $symbol->symbol }}"></iframe>
 </div>
 
 <?php
