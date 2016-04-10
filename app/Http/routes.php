@@ -28,6 +28,8 @@ Route::get('/runscreens', function (ScreenRunnerContract $screenrunner) {
 
 });
 
+Route::post('/instances/bulk', 'InstanceController@bulkDismissInstances');
+
 Route::get('/runreminders', function (ReminderRunnerContract $reminderrunner) {
 
 	$reminders = $reminderrunner->runAllReminders();

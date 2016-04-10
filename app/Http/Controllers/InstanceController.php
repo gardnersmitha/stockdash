@@ -9,6 +9,7 @@ use App\Symbol;
 use App\Instance;
 use App\Reminder;
 use Log;
+use DB;
 use DateTime;
 use DateInterval;
 
@@ -180,5 +181,28 @@ class InstanceController extends Controller
             return $instance;
         }
 
+    }
+
+    /**
+     * Take a collection of instances and dismiss them in bulk.
+     *
+     * @param \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function bulkDismissInstances(Request $request){
+        
+        $instances = $request->input('instances');
+        $instances_to_dismiss = [];
+
+        foreach ($instances as $instance) {
+            array_push($instances_to_dismiss, $instance['id']);
+        }
+
+        Log::info('Bulk dismissing instances.');
+
+
+        DB::table('instances')->whereIn('id',$instances_to_dismiss)->update(array('action'=>'dismiss','sentiment'=>'neutral','note'=>'Bulk Dismiss'));
+
+        return 'Success. Please reload.';
     }
 }

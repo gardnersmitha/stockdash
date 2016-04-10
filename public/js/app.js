@@ -27,7 +27,35 @@ $(document).ready(function(){
 			.always(function(response){
 				console.log(response);
 			});
+	});
 
+
+	$('.bulk-dimsiss').click(function(){
+
+		var instances = $(this).data('instances');
+
+		if(! confirm('Dismiss'+instances.length+' instances?')){
+			return false;
+		}
+
+		var bulk_dismiss = $.post('instances/bulk', {'instances':instances})
+
+			.done(function(response){
+				alert(response);
+			})
+
+			.fail(function(response){
+				alert(response);
+				console.log(response);
+			})
+
+			.then(function(response){
+				//
+			})
+
+			.always(function(response){
+				console.log(response);
+			});
 	});
 
 

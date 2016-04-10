@@ -9,9 +9,17 @@
 
         	@foreach ($instances as $instance_group_name => $instance_group_instances)
 
-            <div class="list-group-heading list-group-item row" data-toggle="collapse" data-target="#{{ str_slug($instance_group_name,"-") }}-instances">{{ $instance_group_name }}</div>
+            <div class="list-group-heading list-group-item row" data-toggle="collapse" data-target="#{{ str_slug($instance_group_name,"-") }}-instances">
+                {{ $instance_group_name }}
+
+            </div>
 
             <ul id="{{ str_slug($instance_group_name,"-") }}-instances" class="list-group row collapse in">
+
+                <!-- Dismiss All -->
+                <li class="list-group-item">
+                    <a class="bulk-dimsiss" data-instances="{{ collect($instance_group_instances) }}">Dismiss All</a>
+                </li>
 
                 @foreach ($instance_group_instances as $instance)
 
