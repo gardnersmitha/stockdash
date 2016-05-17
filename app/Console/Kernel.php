@@ -37,5 +37,11 @@ class Kernel extends ConsoleKernel
             $screen_runner->fetchScreenResults();
             Log::info('Screen results fetch initiated by schedule.');
         })->daily()->weekdays()->at('21:45'); //4:45PM EST
+
+        //Start the screeners running
+        $schedule->call(function(ReminderRunnerContract $reminder_runner){
+            $reminder_runner->runAllReminders();
+            Log::info('Screen run initiated by schedule.');
+        })->daily()->weekdays()->at('21:35'); //4:35PM EST
     }
 }

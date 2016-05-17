@@ -192,7 +192,7 @@ class InstanceController extends Controller
     public function bulkDismissInstances(Request $request){
         
         $instances = $request->input('instances');
-        $instances_to_dismiss = [];
+        $instances_to_dismiss = []; 
 
         foreach ($instances as $instance) {
             array_push($instances_to_dismiss, $instance['id']);
@@ -200,7 +200,7 @@ class InstanceController extends Controller
 
         Log::info('Bulk dismissing instances.');
 
-
+        //TODO - switch to use the 'chunk' method and a closure here. Need to handle errors correctly.
         DB::table('instances')->whereIn('id',$instances_to_dismiss)->update(array('action'=>'dismiss','sentiment'=>'neutral','note'=>'Bulk Dismiss'));
 
         return 'Success. Please reload.';

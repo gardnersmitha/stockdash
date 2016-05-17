@@ -60,7 +60,9 @@ class ReminderRunner implements ReminderRunnerContract
 	}
 
 	/**
-	 * Process a collection of reminders and send them to the right methods based on their 'remind_on' date. Today's reminders get turned into new Instances. Future reminders check their parent symbol's 'is_muted' property and set it to true if necessary.
+	 * Process a collection of reminders and send them to the right methods based on their 'remind_on' date. 
+	 Today's reminders get turned into new Instances. 
+	 Future reminders check their parent symbol's 'is_muted' property and set it to true if necessary.
 	 *
 	 * @param Illuminate\Support\Collection $reminders
 	 */

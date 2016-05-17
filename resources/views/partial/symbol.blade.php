@@ -1,6 +1,6 @@
 <div id="chart-container" class="row">
-	<!-- chart for {{ $symbol->symbol }} -->
-	<!-- TradingView Widget BEGIN -->
+<!-- 	chart for {{ $symbol->symbol }}
+ -->	<!-- TradingView Widget BEGIN -->
 <!-- 		<script>
 			new TradingView.widget({
 				  "container_id":"chart-container",
