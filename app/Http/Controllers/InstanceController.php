@@ -153,16 +153,18 @@ class InstanceController extends Controller
     {
         
         //See if the action is a reminder
-        if ( str_contains( $instance->action, 'remind' ) ) {
+        if ( str_contains( $instance->action, 'r' ) ) {
 
             //Explode the string to see what the interval should be (1D, 7D, 30D are options)
-            $reminder_interval = explode('_', $instance->action);
+            $reminder_interval = strtoupper(trim($instance->action,'r'));
+
+            //dd($reminder_interval);
 
             //Get today's date as a DateTime object
             $today = new DateTime(date('Y-m-d'));
 
             //Turn the interval into a DateInterval object
-            $interval = new DateInterval('P'.$reminder_interval[1]);
+            $interval = new DateInterval('P'.$reminder_interval);
 
             //Update our reminder obejct with the new date
             $this->reminder->remind_on = $today->add($interval)->format('Y-m-d H:i:s');

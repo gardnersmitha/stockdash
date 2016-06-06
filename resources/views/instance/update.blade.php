@@ -14,25 +14,15 @@
 		<div class="form-group col-xs-1 p-l-0">
 
 			<label class="sr-only" for="sentiment">Sentiment</label>
-
-			<select class="form-control form-control-sm c-select" name="sentiment">
-			  <option value="bullish">Bullish</option>
-			  <option value="neutral" selected>Neutral</option>
-			  <option value="bearish">Bearish</option>
-			</select>
+			<input type="text" class="form-control form-control-sm" name="sentiment" placeholder="Sentiment">
 
 		</div>
 
 		<div class="form-group col-xs-1 p-x-0">
 
-			<label class="sr-only" for="action">Action</label>
+			<label class="sr-only" for="action">Action</label>				
+			<input type="text" class="form-control form-control-sm" name="action" placeholder="Action">
 
-			<select class="form-control form-control-sm c-select" name="action">
-			  <option value="dismiss" selected>Dismiss</option>
-			  <option value="remind_1D">Remind(1d)</option>
-			  <option value="remind_7D">Remind(1w)</option>
-			  <option value="remind_30D">Remind(1m)</option>
-			</select>
 		</div>
 
 		<div class="form-group col-xs-4">
