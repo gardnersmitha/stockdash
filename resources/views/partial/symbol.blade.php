@@ -1,36 +1,8 @@
 <div id="chart-container" class="row">
-<!-- 	chart for {{ $symbol->symbol }}
- -->	<!-- TradingView Widget BEGIN -->
-<!-- 		<script>
-			new TradingView.widget({
-				  "container_id":"chart-container",
-				  "autosize": true,
-				  "symbol": "{{ $symbol->symbol }}",
-				  "interval": "D",
-				  "timezone": "Etc/UTC",
-				  "theme": "White",
-				  "style": "1",
-				  "locale": "en",
-				  "toolbar_bg": "#f1f3f6",
-				  "hide_side_toolbar": false,
-				  "allow_symbol_change": true,
-				  "details": true, 
-				  "calendar": true,
-				  "hideideas": true,
-				  "news": [
-				  	"headlines"
-				  ],
-				  "studies": [
-				    "MASimple@tv-basicstudies"
-				  ],
-				  "show_popup_button": true,
-				  "popup_width": "1000",
-				  "popup_height": "650"
-			});
-		</script> -->
-	<!-- TradingView Widget END -->
 
-	<iframe id="tv-iframe" src="https://tradingview.com/chart?symbol={{ $symbol->symbol }}"></iframe>
+	{{ $symbol->symbol }}
+<!-- 	<iframe id="tv-iframe" src="https://tradingview.com/chart?symbol={{ $symbol->symbol }}"></iframe>
+ -->
 </div>
 
 <?php

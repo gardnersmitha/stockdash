@@ -80,10 +80,13 @@ class SymbolController extends Controller
         
         //dd($request->partial);
 
-        if( $request->partial == 1 ) {
+        if( $request->format == 'json' ) {
 
-             $html = view('partial.symbol', ['symbol' => $this->symbol])->render();
-             return $html;
+            return response()->json([
+                    "status" => "success",
+                    "message" => "Symbol API request was successful",
+                    "data" => $this->symbol
+                ]);
         }
         else {
             return view('symbol.show', ['symbol' => $this->symbol]);
