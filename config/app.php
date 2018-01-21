@@ -150,6 +150,7 @@ return [
 
         /*
          * Application Service Providers...
+         * Stockdash Providers here are the last three
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
